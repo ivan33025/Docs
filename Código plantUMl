@@ -1,0 +1,66 @@
+@startuml
+class Patient {
+    - ci: String
+    - name: String
+    - birthDate: String
+    - sex: boolean
+    - height: double
+    - weight: double
+    - address: String
+    - diseaseCount: int
+    - photoCount: int
+    - diseases: Diseases[]
+    - photographs: Photograph[]
+
+    + getCI(): String
+    + getName(): String
+    + getBirthDate(): String
+    + getSex(): boolean
+    + getHeight(): double
+    + getWeight(): double
+    + getAddress(): String
+    + addPhotograph(photograph: Photograph): void
+    + addDisease(disease: Diseases): void
+    + deletePhotograph(photograph: Photograph): void
+    + deleteDisease(disease: Diseases): void
+}
+
+class Diseases {
+    - diseaseDate: String
+    - diseaseName: String
+    - diseaseTreatment: String
+
+    + getDiseaseDate(): String
+    + getDiseaseName(): String
+    + getDiseaseTreatment(): String
+}
+
+class Photograph {
+    - photoDate: String
+    - photoName: String
+    - photoType: String
+    - doctorOpinion: String
+
+    + getPhotoDate(): String
+    + getPhotoName(): String
+    + getPhotoType(): String
+    + getDoctorOpinion(): String
+}
+
+class Hospital {
+    - patientCount: int
+    - patients: Patient[]
+
+    + searchPatientCI(CI: String): Patient
+    + findMajorPatientHeight(): String[]
+    + WomenWithDengue(): int
+    + sortPatientsName(): Patient[]
+    + sortPatientsWeight(): Patient[]
+    + addPatient(patient: Patient): void
+    + deletePatient(patient: Patient): void
+}
+
+Patient "0..1" o-- Photograph : has
+Patient "0..*" o-- Diseases : contracted
+Hospital "1..*" *-- Patient : contains
+@enduml
