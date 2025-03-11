@@ -1,0 +1,184 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Patient {
+    private String ci;
+    private String name;
+    private String birthDate;
+    private boolean sex; // true for male, false for female
+    private double height;
+    private double weight;
+    private String address;
+    private int diseaseCount;
+    private int photoCount;
+    private List<Diseases> diseases;
+    private List<Photograph> photographs;
+
+    public Patient(String ci, String name, String birthDate, boolean sex, double height, double weight, String address) {
+        this.ci = ci;
+        this.name = name;
+        this.birthDate = birthDate;
+        this.sex = sex;
+        this.height = height;
+        this.weight = weight;
+        this.address = address;
+        this.diseaseCount = 0;
+        this.photoCount = 0;
+        this.diseases = new ArrayList<>();
+        this.photographs = new ArrayList<>();
+    }
+
+    public String getCI() {
+        return ci;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public boolean getSex() {
+        return sex;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void addPhotograph(Photograph photograph) {
+        photographs.add(photograph);
+        photoCount++;
+    }
+
+    public void addDisease(Diseases disease) {
+        diseases.add(disease);
+        diseaseCount++;
+    }
+
+    public void deletePhotograph(Photograph photograph) {
+        photographs.remove(photograph);
+        photoCount--;
+    }
+
+    public void deleteDisease(Diseases disease) {
+        diseases.remove(disease);
+        diseaseCount--;
+    }
+}
+
+class Diseases {
+    private String diseaseDate;
+    private String diseaseName;
+    private String diseaseTreatment;
+
+    public Diseases(String diseaseDate, String diseaseName, String diseaseTreatment) {
+        this.diseaseDate = diseaseDate;
+        this.diseaseName = diseaseName;
+        this.diseaseTreatment = diseaseTreatment;
+    }
+
+    public String getDiseaseDate() {
+        return diseaseDate;
+    }
+
+    public String getDiseaseName() {
+        return diseaseName;
+    }
+
+    public String getDiseaseTreatment() {
+        return diseaseTreatment;
+    }
+}
+
+class Photograph {
+    private String photoDate;
+    private String photoName;
+    private String photoType;
+    private String doctorOpinion;
+
+    public Photograph(String photoDate, String photoName, String photoType, String doctorOpinion) {
+        this.photoDate = photoDate;
+        this.photoName = photoName;
+        this.photoType = photoType;
+        this.doctorOpinion = doctorOpinion;
+    }
+
+    public String getPhotoDate() {
+        return photoDate;
+    }
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public String getPhotoType() {
+        return photoType;
+    }
+
+    public String getDoctorOpinion() {
+        return doctorOpinion;
+    }
+}
+
+class Hospital {
+    private int patientCount;
+    private List<Patient> patients;
+
+    public Hospital() {
+        this.patientCount = 0;
+        this.patients = new ArrayList<>();
+    }
+
+    public Patient searchPatientCI(String CI) {
+        for (Patient patient : patients) {
+            if (patient.getCI().equals(CI)) {
+                return patient;
+            }
+        }
+        return null; // or throw an exception
+    }
+
+    public String[] findMajorPatientHeight() {
+        // Implement logic to find the patient with the maximum height
+        // Returning an empty array for now
+        return new String[0];
+    }
+
+    public int WomenWithDengue() {
+        // Implement logic to count women with Dengue
+        // Returning 0 for now
+        return 0;
+    }
+
+    public Patient[] sortPatientsName() {
+        // Implement sorting logic by name
+        // Returning an empty array for now
+        return new Patient[0];
+    }
+    public Patient[] sortPatientsWeight() {
+        // Implement sorting logic by weight
+        // Returning an empty array for now
+        return new Patient[0];
+    }
+
+    public void addPatient(Patient patient) {
+        patients.add(patient);
+        patientCount++;
+    }
+
+    public void deletePatient(Patient patient) {
+        patients.remove(patient);
+        patientCount--;
+    }
+}  
